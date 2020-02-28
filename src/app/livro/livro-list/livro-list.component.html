@@ -1,0 +1,75 @@
+<form [formGroup]="filterForm" (ngSubmit)="search()">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="assets/supero_cor.svg" style="height: 35px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class='form-group'>
+                            <input placeholder="Busque livros pelo título, autor ou ISBN" type="text"
+                                class='form-control' formControlName="termo">
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-3 align-center">
+                        <p>
+                            <b>Filtrar ano de publicação:</b>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <div class='form-group'>
+                            <input type="text" class='form-control' formControlName="anoPublicacaoInicio">
+                        </div>
+                    </div>
+                    <p class="align-center">
+                        <b>Até</b>
+                    </p>
+                    <div class="col-md-2">
+                        <div class='form-group'>
+                            <input type="text" class='form-control' formControlName="anoPublicacaoFim">
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-12">
+                <button class="btn btn-outline-primary float-right mr-2" type="submit"> <i class="fa fa-search"></i>
+                    Pesquisar</button>
+                <button class="btn btn-outline-secondary float-right mr-2" type="button" (click)="resetFilter()"> <i
+                        class="fa fa-trash"></i> Limpar</button>
+                <button class="btn btn-outline-primary float-right mr-2" type="button"
+                    [routerLink]="['../livro-handler']"> <i class="fa fa-plus"></i> Cadastrar Livro</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<ngx-datatable class="bootstrap striped" (sort)="onSort($event)" [rows]="livros" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [selectionType]="'checkbox'"
+    (select)='onSelect($event)' (page)='setPage($event.offset)' [externalPaging]="true" [count]="pageable.total"
+    [offset]="pageable.page" [limit]="pageable.size" [selected]="livrosSelecionados"
+    [messages]="datatableMessageConfig">
+
+    <ngx-datatable-column *ngFor="let column of columns" name={{column.name}} prop={{column.prop}}>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Ações" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <button type="button" class="btn btn-outline-primary mr-2" (click)="edit(row.id)">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-danger" (click)="remove(row.id)">
+                <i class="fa fa-close"></i>
+            </button>
+        </ng-template>
+    </ngx-datatable-column>
+
+</ngx-datatable>

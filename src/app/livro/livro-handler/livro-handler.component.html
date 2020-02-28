@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="persistObject()">
+    <div class="row">
+        <div class="col-md-8">
+            <div class='form-group'>
+                <label>Título</label>
+                <input type="text" class='form-control' formControlName="titulo">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class='form-group'>
+                <label>ISBN</label>
+                <input type="text" maxLength="13" class='form-control' formControlName="isbn">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class='form-group'>
+                <label>Autor</label>
+                <input type="text" class='form-control' formControlName="autor">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class='form-group'>
+                <label>Editora</label>
+                <input type="text" class='form-control' formControlName="editora">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Ano</label>
+                <input type="number" class='form-control' formControlName="ano">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Idioma</label>
+                <input type="text" class='form-control' formControlName="idioma">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Peso (g)</label>
+                <input type="number" class='form-control' formControlName="peso">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Comprimento (cm)</label>
+                <input type="number" class='form-control' formControlName="comprimento">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Largura (cm)</label>
+                <input type="number" class='form-control' formControlName="largura">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class='form-group'>
+                <label>Altura (cm)</label>
+                <input type="number" class='form-control' formControlName="altura">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12">
+            <button class="btn btn-outline-secondary float-right mr-2" (click)="back()" type="button"> <i class="fa fa-arrow-left"></i> Voltar</button>
+            <button class="btn btn-outline-secondary float-right mr-2" (click)="clear()" type="button"> <i class="fa fa-trash"></i> Limpar</button>
+            <button class="btn btn-outline-primary float-right mr-2" type="submit">Salvar</button>
+        </div>
+    </div>
+</form>
